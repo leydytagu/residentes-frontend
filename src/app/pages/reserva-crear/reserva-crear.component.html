@@ -1,1 +1,28 @@
-<p>reserva-crear works!</p>
+<form [formGroup]="crearReservaForm" (ngSubmit)="crearReserva()">
+  <h1 class="mb-5">Crear reserva</h1>
+
+  <div class="mb-3">
+    <label class="form-label"> Identificador Residente </label>
+    <input type="number" class="form-control" formControlName="idResidente" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Servicio </label>
+    <select class="form-select" formControlName="idServicio">
+      <option value="1">Piscina</option>
+      <option value="2">Gimnasio</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Hora </label>
+    <input type="time" class="form-control" formControlName="hora" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Comentarios </label>
+    <input type="text" class="form-control" formControlName="comentarios" />
+  </div>
+
+  <button class="btn btn-primary mt-3" type="submit">Reservar</button>
+</form>

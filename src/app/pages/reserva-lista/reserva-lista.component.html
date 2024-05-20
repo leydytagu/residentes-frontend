@@ -1,1 +1,9 @@
-<p>reserva-lista works!</p>
+<div class="listado-header-boton">
+  <h1>Listado de Reservas</h1>
+
+  <button class="btn btn-primary" (click)="redirigirCrearReserva()">
+    Agregar
+  </button>
+</div>
+
+<app-table [lista]="listado"></app-table>

@@ -19,8 +19,12 @@ export class ResidenteCrearComponent implements OnInit {
 
   ngOnInit(): void {
     this.crearResidenteForm = this.formBuilder.group({
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
+      identificacion: ['', [Validators.required]],
+      celular: ['', [Validators.required]],
       correo: ['', [Validators.required]],
-      contrasena: ['', [Validators.required]],
+      apartamento: ['', [Validators.required]],
     });
   }
 

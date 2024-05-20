@@ -16,6 +16,7 @@ export class ResidenteListaComponent {
     {
       nombre: 'Juan',
       apellido: 'Martinez',
+      identificacion: '1023857463',
       celular: '312354387',
       correo: 'juan.martinez@gmail.com',
       apartamento: 194,
@@ -23,6 +24,7 @@ export class ResidenteListaComponent {
     {
       nombre: 'Paola',
       apellido: 'Lopez',
+      identificacion: '1023857463',
       celular: '432736543',
       correo: 'paola.lopez@gmail.com',
       apartamento: 298,
@@ -31,6 +33,5 @@ export class ResidenteListaComponent {
 
   redirigirCrearResidente() {
     this.router.navigateByUrl('residente-crear');
-    console.log('se redirigio correctamente');
   }
 }
