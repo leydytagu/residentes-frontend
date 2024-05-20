@@ -1,1 +1,9 @@
-<p>servicio-lista works!</p>
+<div class="listado-servicios-header">
+  <h1>Listado de Servicios</h1>
+
+  <button class="btn btn-primary" (click)="redirigirCrearServicio()">
+    Agregar
+  </button>
+</div>
+
+<app-table [lista]="listado"></app-table>
