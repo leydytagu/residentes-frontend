@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      @for (columna of columnas; track $index) {
+      <th scope="col">{{ columna }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (elemento of lista; track $index) {
+    <tr scope="col">
+      @for (columna of columnas; track $index) {
+      <td>{{ elemento[columna] }}</td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>
