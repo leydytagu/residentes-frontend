@@ -68,7 +68,6 @@ export class ResidentesService {
 
   logout() {
     localStorage.removeItem('token');
-
     this.router.navigateByUrl(PATH.LOGIN);
   }
 }

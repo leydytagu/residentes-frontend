@@ -1,6 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TableComponent } from '../../shared/table/table.component';
+import { ResidenteModel } from '../../core/models/residente.model';
+import { ServicioModel } from '../../core/models/servicio.model';
+import { PATH } from '../../core/enum/path.enum';
 
 @Component({
   selector: 'app-servicio-lista',
@@ -9,31 +12,28 @@ import { TableComponent } from '../../shared/table/table.component';
   templateUrl: './servicio-lista.component.html',
   styleUrl: './servicio-lista.component.css',
 })
-export class ServicioListaComponent {
-  router = inject(Router);
+export class ServicioListaComponent implements OnInit {
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
-  public listado = [
-    {
-      nombre: 'Piscina',
-      descripcion: 'Piscina olimpica para adultos',
-      apertura: '4:00 pm',
-      cierre: '8:00 pm',
-      dias: 'lunes, miercoles, jueves',
-      encargado: 'Pepito',
-      estado: 'Habilitado',
-    },
-    {
-      nombre: 'Gimnasio',
-      descripcion: 'Ginasio semidotado',
-      apertura: '4:00 pm',
-      cierre: '8:00 pm',
-      dias: 'lunes, martes, jueves',
-      encargado: 'Juanito',
-      estado: 'Habilitado',
-    },
-  ];
+  public listado = [];
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ servicios }) => {
+      this.listado = servicios.map((servicio: ServicioModel) => {
+        return {
+          nombre: servicio?.nombre,
+          descripcion: servicio?.descripcion,
+          apertura: servicio?.apertura,
+          cierre: servicio?.cierre,
+          dias: servicio?.dias,
+          encargado: servicio?.encargado,
+        };
+      });
+    });
+  }
 
   redirigirCrearServicio() {
-    this.router.navigateByUrl('servicio-crear');
+    this.router.navigateByUrl(PATH.SERVICIO_CREAR);
   }
 }

@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TableComponent } from '../../shared/table/table.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ResidenteModel } from '../../core/models/residente.model';
+import { PATH } from '../../core/enum/path.enum';
 
 @Component({
   selector: 'app-residente-lista',
@@ -9,29 +11,28 @@ import { Router } from '@angular/router';
   templateUrl: './residente-lista.component.html',
   styleUrl: './residente-lista.component.css',
 })
-export class ResidenteListaComponent {
-  router = inject(Router);
+export class ResidenteListaComponent implements OnInit {
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
-  public listado = [
-    {
-      nombre: 'Juan',
-      apellido: 'Martinez',
-      identificacion: '1023857463',
-      celular: '312354387',
-      correo: 'juan.martinez@gmail.com',
-      apartamento: 194,
-    },
-    {
-      nombre: 'Paola',
-      apellido: 'Lopez',
-      identificacion: '1023857463',
-      celular: '432736543',
-      correo: 'paola.lopez@gmail.com',
-      apartamento: 298,
-    },
-  ];
+  public listado = [];
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ residentes }) => {
+      this.listado = residentes.map((residente: ResidenteModel) => {
+        return {
+          identificacion: residente?.identificacion,
+          nombre: residente?.nombre,
+          apellido: residente?.apellido,
+          celular: residente?.celular,
+          correo: residente?.correo,
+          apartamento: residente?.apartamento,
+        };
+      });
+    });
+  }
 
   redirigirCrearResidente() {
-    this.router.navigateByUrl('residente-crear');
+    this.router.navigateByUrl(PATH.RESIDENTE_CREAR);
   }
 }

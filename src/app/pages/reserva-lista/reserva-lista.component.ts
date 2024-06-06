@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TableComponent } from '../../shared/table/table.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ReservaModel } from '../../core/models/reserva.model';
 
 @Component({
   selector: 'app-reserva-lista',
@@ -9,23 +10,25 @@ import { Router } from '@angular/router';
   styleUrl: './reserva-lista.component.css',
   imports: [TableComponent],
 })
-export class ReservaListaComponent {
-  router = inject(Router);
+export class ReservaListaComponent implements OnInit {
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
 
-  public listado = [
-    {
-      residente: 'Juan',
-      servicio: 'Piscina',
-      hora: '4:00 pm',
-      comentarios: '-',
-    },
-    {
-      residente: 'Camilo',
-      servicio: 'Gimnasio',
-      hora: '3:00 pm',
-      comentarios: 'Necesita instructor',
-    },
-  ];
+  public listado = [];
+
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ reservas }) => {
+      this.listado = reservas.map((reserva: ReservaModel) => {
+        return {
+          servicio: reserva?.servicio?.nombre,
+          residente: reserva?.residente?.nombre,
+          identificacion: reserva?.residente?.identificacion,
+          dia: reserva?.createdAt,
+          hora: reserva?.hora,
+        };
+      });
+    });
+  }
 
   redirigirCrearReserva() {
     this.router.navigateByUrl('reserva-crear');
