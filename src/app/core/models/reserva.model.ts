@@ -1,15 +1,26 @@
 export class ReservaModel {
   constructor(
     public readonly _id: string,
-    public nombre: string,
-    public email: string,
-    public tipoDocumento: string,
-    public numeroDocumente: string,
-    public rol: string,
-    public createAt: Date,
-    public numeroCelular?: number,
-    public peso?: string,
-    public fechaNacimiento?: Date,
-    public password?: string
+    public servicio: {
+      _id: string;
+      nombre: string;
+      descripcion: string;
+      apertura: string;
+      cierre: string;
+    },
+    public usuario: {
+      _id: string;
+      nombre: string;
+    },
+    public residente: {
+      _id: string;
+      nombre: string;
+      apellido: string;
+      identificacion: string;
+      celular: string;
+    },
+    public comentarios: string,
+    public createdAt: string,
+    public hora: string
   ) {}
 }

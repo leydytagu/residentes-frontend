@@ -1,15 +1,14 @@
 export class ResidenteModel {
   constructor(
     public readonly _id: string,
+    public identificacion: string,
     public nombre: string,
-    public email: string,
-    public tipoDocumento: string,
-    public numeroDocumente: string,
-    public rol: string,
-    public createAt: Date,
-    public numeroCelular?: number,
-    public peso?: string,
-    public fechaNacimiento?: Date,
-    public password?: string
+    public apellido: string,
+    public celular: string,
+    public correo: string,
+    public apartamento: string,
+    public createdAt: string,
+    public password: string,
+    public rol: string
   ) {}
 }
