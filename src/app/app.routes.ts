@@ -9,11 +9,22 @@ import { ServicioDetalleComponent } from './pages/servicio-detalle/servicio-deta
 import { ReservaListaComponent } from './pages/reserva-lista/reserva-lista.component';
 import { ReservaCrearComponent } from './pages/reserva-crear/reserva-crear.component';
 import { ReservaDetalleComponent } from './pages/reserva-detalle/reserva-detalle.component';
+import { LoginComponent } from './pages/login/login.component';
+import { authGuard } from './core/guards/auth.guard';
+import { residenteResolver } from './core/resolvers/residente/residente.resolver';
+import { servicioResolver } from './core/resolvers/servicio/servicio.resolver';
+import { reservaResolver } from './core/resolvers/reserva/reserva.resolver';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    title: 'Login',
+    component: LoginComponent,
+  },
+  {
     path: '',
     title: 'Residentes',
+    canActivate: [authGuard],
     children: [
       {
         path: 'home',
@@ -24,6 +35,9 @@ export const routes: Routes = [
         path: 'residente-lista',
         title: 'Listar Residentes',
         component: ResidenteListaComponent,
+        resolve: {
+          residentes: residenteResolver,
+        },
       },
       {
         path: 'residente-crear',
@@ -39,6 +53,9 @@ export const routes: Routes = [
         path: 'servicio-lista',
         title: 'Listar Servicios',
         component: ServicioListaComponent,
+        resolve: {
+          servicios: servicioResolver,
+        },
       },
       {
         path: 'servicio-crear',
@@ -54,6 +71,9 @@ export const routes: Routes = [
         path: 'reserva-lista',
         title: 'Listar Reservas',
         component: ReservaListaComponent,
+        resolve: {
+          reservas: reservaResolver,
+        },
       },
       {
         path: 'reserva-crear',
