@@ -3,6 +3,8 @@
     <tr>
       @for (columna of columnas; track $index) {
       <th scope="col">{{ columna }}</th>
+      } @if (mostrarAcciones) {
+      <th>Acciones</th>
       }
     </tr>
   </thead>
@@ -11,6 +13,24 @@
     <tr scope="col">
       @for (columna of columnas; track $index) {
       <td>{{ elemento[columna.toLocaleLowerCase()] }}</td>
+      } @if (mostrarAcciones) {
+      <td>
+        <button
+          type="button"
+          class="btn btn-info mx-2"
+          (click)="editar(elemento)"
+        >
+          Editar
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="eliminar(elemento)"
+        >
+          Eliminar
+        </button>
+      </td>
       }
     </tr>
     }
