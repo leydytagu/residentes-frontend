@@ -19,14 +19,13 @@ export class ServicioListaComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private serviciosService = inject(ServiciosService);
 
-  public servicios: ServicioModel[] = [];
   public listado = [];
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ servicios }) => {
-      this.servicios = servicios;
       this.listado = servicios.map((servicio: ServicioModel) => {
         return {
+          _id: servicio?._id,
           nombre: servicio?.nombre,
           descripcion: servicio?.descripcion,
           apertura: servicio?.apertura,
@@ -43,12 +42,7 @@ export class ServicioListaComponent implements OnInit {
   }
 
   redireccionarEditar(servicio: ServicioModel) {
-    const servicioEncontrado: ServicioModel | undefined = this.servicios.find(
-      (item) => item.nombre === servicio.nombre
-    );
-    this.router.navigateByUrl(
-      `${PATH.SERVICIO_DETALLE}/${servicioEncontrado?._id}`
-    );
+    this.router.navigateByUrl(`${PATH.SERVICIO_DETALLE}/${servicio?._id}`);
   }
 
   eliminarServicio(servicio: ServicioModel) {
@@ -59,25 +53,19 @@ export class ServicioListaComponent implements OnInit {
       cancelButtonText: 'No, cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        const servicioEncontrado: ServicioModel | undefined =
-          this.servicios.find((item) => item.nombre === servicio.nombre);
-        if (servicioEncontrado) {
-          this.serviciosService
-            .eliminarServicio(servicioEncontrado?._id)
-            .subscribe({
-              next: (resp: any) => {
-                Swal.fire({
-                  title: `Servicio ${servicioEncontrado.nombre} eliminado`,
-                  icon: 'success',
-                }).then(() => {
-                  window.location.reload();
-                });
-              },
-              error: (error: any) => {
-                mostrarError(error);
-              },
+        this.serviciosService.eliminarServicio(servicio?._id).subscribe({
+          next: (resp: any) => {
+            Swal.fire({
+              title: `Servicio ${servicio.nombre} eliminado`,
+              icon: 'success',
+            }).then(() => {
+              window.location.reload();
             });
-        }
+          },
+          error: (error: any) => {
+            mostrarError(error);
+          },
+        });
       }
     });
   }

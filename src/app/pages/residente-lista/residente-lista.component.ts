@@ -19,14 +19,13 @@ export class ResidenteListaComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private residentesService = inject(ResidentesService);
 
-  public residentes: ResidenteModel[] = [];
   public listado = [];
 
   ngOnInit() {
     this.activatedRoute.data.subscribe(({ residentes }) => {
-      this.residentes = residentes;
       this.listado = residentes.map((residente: ResidenteModel) => {
         return {
+          _id: residente?._id,
           identificacion: residente?.identificacion,
           nombre: residente?.nombre,
           apellido: residente?.apellido,
@@ -43,14 +42,7 @@ export class ResidenteListaComponent implements OnInit {
   }
 
   redireccionarEditar(residente: ResidenteModel) {
-    const residenteEncontrado: ResidenteModel | undefined =
-      this.residentes.find(
-        (item) => item.identificacion === residente.identificacion
-      );
-
-    this.router.navigateByUrl(
-      `${PATH.RESIDENTE_DETALLE}/${residenteEncontrado?._id}`
-    );
+    this.router.navigateByUrl(`${PATH.RESIDENTE_DETALLE}/${residente?._id}`);
   }
 
   eliminarResidente(residente: ResidenteModel) {
@@ -61,27 +53,19 @@ export class ResidenteListaComponent implements OnInit {
       cancelButtonText: 'No, cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
-        const residenteEncontrado: ResidenteModel | undefined =
-          this.residentes.find(
-            (item) => item.identificacion === residente.identificacion
-          );
-        if (residenteEncontrado) {
-          this.residentesService
-            .eliminarResidente(residenteEncontrado?._id)
-            .subscribe({
-              next: (resp: any) => {
-                Swal.fire({
-                  title: `Residente ${residenteEncontrado.nombre} eliminado`,
-                  icon: 'success',
-                }).then(() => {
-                  window.location.reload();
-                });
-              },
-              error: (error: any) => {
-                mostrarError(error);
-              },
+        this.residentesService.eliminarResidente(residente?._id).subscribe({
+          next: (resp: any) => {
+            Swal.fire({
+              title: `Residente ${residente.nombre} eliminado`,
+              icon: 'success',
+            }).then(() => {
+              window.location.reload();
             });
-        }
+          },
+          error: (error: any) => {
+            mostrarError(error);
+          },
+        });
       }
     });
   }
