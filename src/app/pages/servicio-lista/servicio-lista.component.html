@@ -6,4 +6,10 @@
   </button>
 </div>
 
-<app-table [lista]="listado"></app-table>
+<app-table
+  [lista]="listado"
+  [mostrarAcciones]="true"
+  (onEditar)="redireccionarEditar($event)"
+  (onEliminar)="eliminarServicio($event)"
+>
+</app-table>

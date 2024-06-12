@@ -1,1 +1,57 @@
-<p>servicio-detalle works!</p>
+@if (actualizarServicioForm){
+<form [formGroup]="actualizarServicioForm" (ngSubmit)="actualizarServicio()">
+  <h1 class="mb-5">Actualizar servicio</h1>
+  <div class="mb-3">
+    <label class="form-label"> Nombre </label>
+    <input type="text" class="form-control" formControlName="nombre" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Descripción </label>
+    <input type="text" class="form-control" formControlName="descripcion" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Horario de apertura </label>
+    <input type="time" class="form-control" formControlName="apertura" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Horario de cierre </label>
+    <input type="time" class="form-control" formControlName="cierre" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Dias </label>
+    <select class="form-select" multiple formControlName="dias">
+      <option value="lunes">Lunes</option>
+      <option value="martes">Martes</option>
+      <option value="miercoles">Miercoles</option>
+      <option value="jueves">Jueves</option>
+      <option value="viernes">Viernes</option>
+      <option value="sabado">Sabado</option>
+      <option value="domingo">Domingo</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Encargado </label>
+    <input type="texto" class="form-control" formControlName="encargado" />
+  </div>
+
+  <div class="mb-5">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="estado"
+        formControlName="estado"
+      />
+      <label class="form-check-label" for="estado">Habilitado</label>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-3" type="submit">Actualizar</button>
+</form>
+}
