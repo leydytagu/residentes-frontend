@@ -14,6 +14,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { residenteResolver } from './core/resolvers/residente/residente.resolver';
 import { servicioResolver } from './core/resolvers/servicio/servicio.resolver';
 import { reservaResolver } from './core/resolvers/reserva/reserva.resolver';
+import { LayoutComponent } from './shared/layout/layout.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {
     path: '',
     title: 'Residentes',
+    component: LayoutComponent,
     canActivate: [authGuard],
     children: [
       {

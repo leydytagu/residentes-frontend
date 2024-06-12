@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ResidentesService } from '../../services/residentes.service';
 import { PATH } from '../../core/enum/path.enum';
 import { LoginInterface } from '../../core/interfaces/login.interface';
+import { mostrarError } from '../../core/helpers/utils';
 
 @Component({
   selector: 'app-login',
@@ -43,9 +44,13 @@ export class LoginComponent implements OnInit {
   iniciarSesion() {
     this.islogin = true;
 
-    if (this.loginForm.invalid) {
+    /*if (this.loginForm.invalid) {
+      Swal.fire({
+        html: `Formulario Invalido`,
+        icon: 'warning',
+      });
       return;
-    }
+    }*/
 
     const data = this.loginForm.value;
 
@@ -67,7 +72,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (error: any) => {
-        console.error(error.error.msg);
+        mostrarError(error);
       },
     });
   }
