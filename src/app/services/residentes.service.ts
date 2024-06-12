@@ -1,11 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import { LoginInterface } from '../core/interfaces/login.interface';
+import {
+  LoginInterface,
+  OlvidoInterface,
+} from '../core/interfaces/login.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { PATH } from '../core/enum/path.enum';
 import { ResidenteModel } from '../core/models/residente.model';
+import Swal from 'sweetalert2';
 
 const base_url = environment.base_url;
 
@@ -78,6 +82,10 @@ export class ResidentesService {
         localStorage.setItem('usuario', JSON.stringify(resp.usuario));
       })
     );
+  }
+
+  olvidoContrasena(data: OlvidoInterface) {
+    return this.httpClient.post(`${base_url}/login/olvidocontrasena`, data);
   }
 
   logout() {

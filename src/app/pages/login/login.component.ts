@@ -76,4 +76,8 @@ export class LoginComponent implements OnInit {
       },
     });
   }
+
+  redirectOlvidoContrasena(): void {
+    this.router.navigateByUrl(PATH.OLVIDO_CONTRASENA);
+  }
 }

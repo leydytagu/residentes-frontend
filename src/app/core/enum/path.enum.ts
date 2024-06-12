@@ -10,4 +10,5 @@ export enum PATH {
   RESERVA_CREAR = 'reserva-crear',
   RESERVA_DETALLE = 'reserva-detalle',
   LOGIN = 'login',
+  OLVIDO_CONTRASENA = 'olvido-contrasena',
 }
