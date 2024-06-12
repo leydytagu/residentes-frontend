@@ -9,7 +9,7 @@
 <app-table
   [lista]="listado"
   [mostrarAcciones]="true"
-  (onEditar)="redireccionarEditar()"
+  (onEditar)="redireccionarEditar($event)"
   (onEliminar)="eliminarResidente($event)"
 >
 </app-table>

@@ -47,7 +47,7 @@ export const routes: Routes = [
         component: ResidenteCrearComponent,
       },
       {
-        path: 'residente-detalle',
+        path: 'residente-detalle/:id',
         title: 'Detalle Residente',
         component: ResidenteDetalleComponent,
       },
@@ -65,7 +65,7 @@ export const routes: Routes = [
         component: ServicioCrearComponent,
       },
       {
-        path: 'servicio-detalle',
+        path: 'servicio-detalle/:id',
         title: 'Detalle Servicio',
         component: ServicioDetalleComponent,
       },
@@ -83,7 +83,7 @@ export const routes: Routes = [
         component: ReservaCrearComponent,
       },
       {
-        path: 'reserva-detalle',
+        path: 'reserva-detalle/:id',
         title: 'Detalle Reserva',
         component: ReservaDetalleComponent,
       },

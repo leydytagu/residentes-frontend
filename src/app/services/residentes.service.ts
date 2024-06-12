@@ -42,6 +42,15 @@ export class ResidentesService {
       .pipe(map((respuesta) => respuesta.residentes));
   }
 
+  getResidente(id: string) {
+    return this.httpClient
+      .get<{ ok: boolean; residente: ResidenteModel }>(
+        `${base_url}/residente/${id}`,
+        this.headers
+      )
+      .pipe(map((respuesta) => respuesta.residente));
+  }
+
   crearResidente(residente: ResidenteModel) {
     return this.httpClient.post(
       `${base_url}/residente`,
@@ -50,9 +59,9 @@ export class ResidentesService {
     );
   }
 
-  actualizarResidente(residente: ResidenteModel) {
+  actualizarResidente(id: string, residente: ResidenteModel) {
     return this.httpClient.put(
-      `${base_url}/residente/${residente._id}`,
+      `${base_url}/residente/${id}`,
       residente,
       this.headers
     );

@@ -42,8 +42,15 @@ export class ResidenteListaComponent implements OnInit {
     this.router.navigateByUrl(PATH.RESIDENTE_CREAR);
   }
 
-  redireccionarEditar() {
-    this.router.navigateByUrl(PATH.RESIDENTE_LISTA);
+  redireccionarEditar(residente: ResidenteModel) {
+    const residenteEncontrado: ResidenteModel | undefined =
+      this.residentes.find(
+        (item) => item.identificacion === residente.identificacion
+      );
+
+    this.router.navigateByUrl(
+      `${PATH.RESIDENTE_DETALLE}/${residenteEncontrado?._id}`
+    );
   }
 
   eliminarResidente(residente: ResidenteModel) {
