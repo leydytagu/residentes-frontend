@@ -12,12 +12,14 @@ import { ResidentesService } from '../../services/residentes.service';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit {
-  private residentesService = inject(ResidentesService);
+  nombreUsuario: string;
   menuItems: MenuInterface[] = [];
+
+  private residentesService = inject(ResidentesService);
 
   ngOnInit(): void {
     this.menuItems = MenuRoutes;
-    console.log(this.menuItems);
+    this.nombreUsuario = this.residentesService.usuario?.nombre;
   }
 
   cerrarSesion() {

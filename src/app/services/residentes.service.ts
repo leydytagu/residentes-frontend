@@ -21,6 +21,10 @@ export class ResidentesService {
     return localStorage.getItem('token') || '';
   }
 
+  get usuario(): ResidenteModel {
+    return JSON.parse(localStorage.getItem('usuario') || '');
+  }
+
   get headers() {
     return {
       headers: {
@@ -62,12 +66,14 @@ export class ResidentesService {
     return this.httpClient.post(`${base_url}/login`, login).pipe(
       tap((resp: any) => {
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
       })
     );
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
     this.router.navigateByUrl(PATH.LOGIN);
   }
 }

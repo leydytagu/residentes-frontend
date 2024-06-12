@@ -6,8 +6,12 @@
     [routerLink]="'/home'"
     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
   >
-    <i class="fa-solid fa-circle-user mx-2"></i>
-    <span class="fs-4">Admin Residentes</span>
+    <img
+      src="https://static.vecteezy.com/system/resources/previews/005/003/560/non_2x/house-logo-house-icon-house-icon-isolated-on-white-background-home-logo-vector.jpg"
+      style="width: 40px"
+      alt="logo"
+    />
+    <span class="fs-4 mx-2">Residentes App</span>
   </a>
   <hr />
   <ul class="nav nav-pills flex-column mb-auto">
@@ -36,13 +40,13 @@
       aria-expanded="false"
     >
       <img
-        src="https://github.com/mdo.png"
+        src="https://i.pinimg.com/originals/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.png"
         alt=""
         width="32"
         height="32"
         class="rounded-circle me-2"
       />
-      <strong>Camilo</strong>
+      <strong>{{ nombreUsuario }}</strong>
     </a>
     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
       <li><a class="dropdown-item" href="#">Configuraciones</a></li>
