@@ -80,4 +80,8 @@ export class LoginComponent implements OnInit {
   redirectOlvidoContrasena(): void {
     this.router.navigateByUrl(PATH.OLVIDO_CONTRASENA);
   }
+
+  redirectRegistro(): void {
+    this.router.navigateByUrl(PATH.REGISTRO);
+  }
 }

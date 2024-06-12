@@ -84,6 +84,15 @@ export class ResidentesService {
     );
   }
 
+  registro(login: LoginInterface) {
+    return this.httpClient.post(`${base_url}/login`, login).pipe(
+      tap((resp: any) => {
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+      })
+    );
+  }
+
   olvidoContrasena(data: OlvidoInterface) {
     return this.httpClient.post(`${base_url}/login/olvidocontrasena`, data);
   }

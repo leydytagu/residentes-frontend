@@ -16,6 +16,7 @@ import { servicioResolver } from './core/resolvers/servicio/servicio.resolver';
 import { reservaResolver } from './core/resolvers/reserva/reserva.resolver';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { OlvidocontrasenaComponent } from './pages/olvidocontrasena/olvidocontrasena.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,11 @@ export const routes: Routes = [
     path: 'olvido-contrasena',
     title: 'Olvido COntraseña',
     component: OlvidocontrasenaComponent,
+  },
+  {
+    path: 'registro',
+    title: 'Registro',
+    component: RegistroComponent,
   },
   {
     path: '',
