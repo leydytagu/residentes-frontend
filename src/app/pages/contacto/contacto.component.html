@@ -1,0 +1,17 @@
+@if (crearContactoForm){
+<form [formGroup]="crearContactoForm" (ngSubmit)="crearContacto()">
+  <h1 class="mb-5">Contactanos</h1>
+
+  <div class="mb-3">
+    <label class="form-label"> Asunto </label>
+    <input type="text" class="form-control" formControlName="asunto" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label"> Mensaje </label>
+    <input type="text" class="form-control" formControlName="mensaje" />
+  </div>
+
+  <button class="btn btn-primary mt-3" type="submit">Enviar mensaje</button>
+</form>
+}

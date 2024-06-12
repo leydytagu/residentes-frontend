@@ -29,4 +29,11 @@ export const MenuRoutes: MenuInterface[] = [
     classCss: '',
     submenu: [],
   },
+  {
+    path: 'contacto',
+    title: 'Contacto',
+    icon: 'fa-solid fa-user',
+    classCss: '',
+    submenu: [],
+  },
 ];

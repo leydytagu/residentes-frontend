@@ -57,4 +57,8 @@ export class ReservasService {
   eliminarReserva(id: string) {
     return this.httpClient.delete(`${base_url}/reserva/${id}`, this.headers);
   }
+
+  contacto(data: ReservaModel) {
+    return this.httpClient.post(`${base_url}/contacto`, data, this.headers);
+  }
 }

@@ -17,6 +17,7 @@ import { reservaResolver } from './core/resolvers/reserva/reserva.resolver';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { OlvidocontrasenaComponent } from './pages/olvidocontrasena/olvidocontrasena.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 
 export const routes: Routes = [
   {
@@ -98,6 +99,11 @@ export const routes: Routes = [
         path: 'reserva-detalle/:id',
         title: 'Detalle Reserva',
         component: ReservaDetalleComponent,
+      },
+      {
+        path: 'contacto',
+        title: 'Contacto',
+        component: ContactoComponent,
       },
       {
         path: '**',
