@@ -3,7 +3,7 @@
     <tr>
       @for (columna of columnas; track $index) {
       <th scope="col">{{ columna }}</th>
-      } @if (mostrarAcciones) {
+      } @if (mostrarAcciones && columnas.length > 0) {
       <th>Acciones</th>
       }
     </tr>

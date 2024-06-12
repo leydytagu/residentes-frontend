@@ -2,8 +2,14 @@
   <h1>Listado de Reservas</h1>
 
   <button class="btn btn-primary" (click)="redirigirCrearReserva()">
-    Agregar
+    Crear reserva
   </button>
 </div>
 
-<app-table [lista]="listado"></app-table>
+<app-table
+  [lista]="listado"
+  [mostrarAcciones]="true"
+  (onEditar)="redireccionarEditar($event)"
+  (onEliminar)="eliminarReserva($event)"
+>
+</app-table>

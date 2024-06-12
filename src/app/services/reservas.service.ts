@@ -33,14 +33,23 @@ export class ReservasService {
       .pipe(map((respuesta) => respuesta.reservas));
   }
 
+  getReserva(id: string) {
+    return this.httpClient
+      .get<{ ok: boolean; reserva: ReservaModel }>(
+        `${base_url}/reserva/${id}`,
+        this.headers
+      )
+      .pipe(map((respuesta) => respuesta.reserva));
+  }
+
   crearReserva(reserva: ReservaModel) {
     return this.httpClient.post(`${base_url}/reserva`, reserva, this.headers);
   }
 
-  actualizarReserva(reserva: ReservaModel) {
+  actualizarReserva(id: string, residente: ReservaModel) {
     return this.httpClient.put(
-      `${base_url}/reserva/${reserva._id}`,
-      reserva,
+      `${base_url}/reserva/${id}`,
+      residente,
       this.headers
     );
   }

@@ -16,9 +16,9 @@ export class TableComponent {
 
   get columnas(): string[] {
     if (this.lista.length > 0) {
-      return Object.keys(this.lista[0]).map(
-        (columna) => columna.charAt(0).toUpperCase() + columna.slice(1)
-      );
+      return Object.keys(this.lista[0])
+        .filter((columna) => columna !== '_id')
+        .map((columna) => columna.charAt(0).toUpperCase() + columna.slice(1));
     }
     return [];
   }
